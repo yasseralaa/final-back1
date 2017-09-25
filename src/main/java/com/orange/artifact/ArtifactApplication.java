@@ -30,6 +30,7 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 	}
     // Provider Done
 	// Flyway Done
+	//Jetty Done
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
