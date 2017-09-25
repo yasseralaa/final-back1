@@ -32,6 +32,6 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 			}
 		};
 	}
-	
+
 }
 

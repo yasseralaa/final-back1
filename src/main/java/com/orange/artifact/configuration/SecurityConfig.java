@@ -15,21 +15,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    @Qualifier("dataSource")
-    DataSource dataSource;
 
     @Autowired
-    public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    private CustomAuthenticationProvider authProvider;
 
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery(
-                        "select email as username , password, 1 as enabled from user where email=?")
-                .authoritiesByUsernameQuery(
-                        "select user.email as username ," +
-                                " role.role as role from user join role " +
-                                "on user.role_id = role.id where email= ?"
-                );
+    @Override
+    protected void configure(
+            AuthenticationManagerBuilder auth) throws Exception {
+
+        auth.authenticationProvider(authProvider);
     }
 
 
@@ -37,11 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.httpBasic().and().authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-//                .antMatchers("/users").permitAll()
-//                .antMatchers("/notes/getnote").hasAnyRole("USER" , "ADMIN")
-//                .antMatchers("/notes/**").hasRole("ADMIN")
-//
-//                .antMatchers("/weather/today").hasAnyRole("USER" , "ADMIN")
                 .and()
                 .csrf().disable().headers().frameOptions().disable();
 
