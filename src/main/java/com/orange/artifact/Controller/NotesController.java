@@ -1,6 +1,7 @@
 package com.orange.artifact.Controller;
 
 
+import com.orange.artifact.Weather.OpenWeather.OpenWeather;
 import com.orange.artifact.Weather.Weather;
 import com.orange.artifact.dto.WeatherNoteDTO;
 import com.orange.artifact.model.WeatherNote;
@@ -51,8 +52,8 @@ public class NotesController {
     @RequestMapping(value = "/getnote" , method = RequestMethod.GET)
     public String getWeatherNotes(){
         WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
-        Weather weather = weatherAPIServices.getWeather();
-        return weatherNoteDTOServices.getWeatherNote(weather , weatherNote);
+        Double temperature = weatherAPIServices.getTemperature();
+        return weatherNoteDTOServices.getWeatherNote(temperature , weatherNote);
     }
 
 

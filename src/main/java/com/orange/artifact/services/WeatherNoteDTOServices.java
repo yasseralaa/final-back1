@@ -1,5 +1,6 @@
 package com.orange.artifact.services;
 
+import com.orange.artifact.Weather.OpenWeather.OpenWeather;
 import com.orange.artifact.Weather.Weather;
 import com.orange.artifact.dto.WeatherNoteDTO;
 import com.orange.artifact.model.PredefinedNotes;
@@ -38,15 +39,14 @@ public class WeatherNoteDTOServices {
         return weatherNote;
     }
 
-    public String getWeatherNote(Weather weather , WeatherNote weatherNote){
+    public String getWeatherNote(Double temperature , WeatherNote weatherNote){
 
         logger.info("In WeatherNoteDTOServices : getWeatherNote Function is called");
-
 
         if(weatherNote == null){
             List<PredefinedNotes> predefinedNotesList = predefinedNoteServices.getAllpredefinedNotes();
             for(PredefinedNotes predefinedNotes: predefinedNotesList){
-                if(weather.getMain().getTemp() <= predefinedNotes.getMaximumTemperature()){
+                if(temperature <= predefinedNotes.getMaximumTemperature()){
                     return predefinedNotes.getMessage();
                 }
             }

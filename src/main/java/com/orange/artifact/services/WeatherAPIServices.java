@@ -1,17 +1,36 @@
 package com.orange.artifact.services;
 
+import com.orange.artifact.Weather.OpenWeather.OpenWeather;
 import com.orange.artifact.Weather.Weather;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service("weatherAPIServices")
 public class WeatherAPIServices {
     RestTemplate restTemplate = new RestTemplate();
-    final String weatherURL = "http://api.openweathermap.org/data/2.5/weather?q=cairo&appid=9dc9e56ace548fb9042b05e2c626b127";
+    @Value("${weather.url}")
+    String weatherURL;
+    @Value("${weather.name}")
+    String name;
 
     public Weather getWeather(){
-        Weather weather = restTemplate.getForObject(weatherURL,Weather.class);
-        return weather;
+        if(name == null){
+            return null;
+        }
+        if(name.equalsIgnoreCase("openweather")) {
+            OpenWeather openWeather = restTemplate.getForObject(weatherURL, OpenWeather.class);
+            return openWeather;
+        }
+        return null;
+    }
+
+    public Double getTemperature(){
+        if(name.equalsIgnoreCase("openweather")){
+            OpenWeather openWeather = restTemplate.getForObject(weatherURL, OpenWeather.class);
+            return  openWeather.getMain().getTemp();
+        }
+        return null;
     }
 
 }

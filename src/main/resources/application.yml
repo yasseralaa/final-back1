@@ -73,3 +73,8 @@ endpoints:
   flyway:
     web:
       enabled: true
+
+weather:
+  url: 'http://api.openweathermap.org/data/2.5/weather?q=cairo&appid=9dc9e56ace548fb9042b05e2c626b127'
+  name: 'openweather'
+
