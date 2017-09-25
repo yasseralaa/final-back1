@@ -42,3 +42,12 @@
 2017/09/25 15:43:19 [emerg] 8716#9008: bind() to 0.0.0.0:80 failed (10013: FormatMessage() error:(317))
 2017/09/25 15:43:33 [emerg] 8828#10224: bind() to 0.0.0.0:80 failed (10013: FormatMessage() error:(317))
 2017/09/25 16:03:40 [error] 4312#7388: *1 upstream timed out (10060: FormatMessage() error:(317)) while connecting to upstream, client: 127.0.0.1, server: localhost, request: "OPTIONS /weather/today HTTP/1.1", upstream: "http://[::1]:3000/weather/today", host: "localhost"
+2017/09/25 18:08:18 [emerg] 804#6012: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:08:29 [emerg] 7984#12172: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:09:25 [emerg] 7056#11240: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:09:58 [emerg] 9040#12996: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:10:46 [emerg] 10936#9700: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:11:31 [emerg] 7224#5060: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:12:18 [emerg] 1808#12020: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:12:45 [emerg] 972#8144: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)
+2017/09/25 18:13:01 [emerg] 2948#3472: CreateDirectory() "F:\orange-finalproject\final-back1\nginx-1.12.1/temp/client_body_temp" failed (3: The system cannot find the path specified)

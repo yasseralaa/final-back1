@@ -34,6 +34,7 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 	// Jetty Done
 	// FactoryMethod Done
 	// Nginx Done
+	//FactoryMethod Updated
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
