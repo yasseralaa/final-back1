@@ -6,7 +6,7 @@ import lombok.Data;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OpenWeather extends Weather{
+public class OpenWeather implements Weather{
     private Main main;
     private Wind wind;
 }
