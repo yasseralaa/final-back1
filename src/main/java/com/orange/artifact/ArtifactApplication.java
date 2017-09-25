@@ -1,6 +1,13 @@
 package com.orange.artifact;
 
 
+import com.orange.artifact.model.PredefinedNotes;
+import com.orange.artifact.model.WeatherNote;
+import com.orange.artifact.repository.PredefinedNotesRepository;
+import com.orange.artifact.repository.RoleRepository;
+import com.orange.artifact.repository.UserRepository;
+import com.orange.artifact.repository.WeatherNoteRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -22,6 +29,7 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 		SpringApplication.run(ArtifactApplication.class, args);
 	}
     // Provider Done
+	// Flyway Done
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
@@ -29,6 +37,23 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 			public void addCorsMappings(CorsRegistry registry) {
 				registry.addMapping("/**").allowedOrigins("http://localhost:3000");
 			}
+		};
+	}
+
+	@Bean
+	public CommandLineRunner runner(final UserRepository userRepository,
+									final PredefinedNotesRepository predefinedNotesRepository,
+									final RoleRepository roleRepository,
+									final WeatherNoteRepository weatherNoteRepository) {
+		return new CommandLineRunner() {
+			@Override
+			public void run(String... args) throws Exception {
+				System.err.println(userRepository.findAll());
+				System.err.println(predefinedNotesRepository.findAll());
+				System.err.println(roleRepository.findAll());
+				System.err.println(weatherNoteRepository.findAll());
+			}
+
 		};
 	}
 
