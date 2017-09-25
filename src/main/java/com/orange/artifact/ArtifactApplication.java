@@ -31,8 +31,9 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 
     // Provider Done
 	// Flyway Done
-	//Jetty Done
-	//FactoryMethod Done
+	// Jetty Done
+	// FactoryMethod Done
+	// Nginx Done
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
