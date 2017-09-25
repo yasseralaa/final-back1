@@ -21,8 +21,7 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 		logger.info("main Function is called");
 		SpringApplication.run(ArtifactApplication.class, args);
 	}
-    //just comment4
-	//just comment5
+    // Provider Done
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurerAdapter() {
