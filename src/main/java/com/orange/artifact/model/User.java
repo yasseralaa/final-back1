@@ -1,14 +1,16 @@
 package com.orange.artifact.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 
 @Entity
 @Table(name = "user")
@@ -21,6 +23,7 @@ public class User {
 
     @Getter @Setter
     @Column(name = "name")
+    @NotNull
     private String name;
 
     @Getter @Setter

@@ -1,6 +1,7 @@
 package com.orange.artifact.Controller;
 
 
+import com.orange.artifact.ErrorHandling.EntityNotFoundException;
 import com.orange.artifact.Weather.Weather;
 import com.orange.artifact.dto.LoginDTO;
 import com.orange.artifact.dto.UserDTO;
@@ -71,7 +72,7 @@ public class UserController {
 
     @PostMapping(value = "/login")
     @RequestMapping(value = "/login" , method = {POST , PUT,GET})
-    public User login(@RequestBody @Validated(LoginDTOValidator.class)  LoginDTO loginDTO, BindingResult result){
+    public User login(@RequestBody @Validated(LoginDTOValidator.class)  LoginDTO loginDTO, BindingResult result) {
         if(result.hasErrors()) {
             throw new UsernameNotFoundException("usr nt fnd");
         }
@@ -84,6 +85,11 @@ public class UserController {
         System.out.println(user.getName());*/
         return user;
 
+    }
+
+    @GetMapping(value = "/{userId}")
+    public User getUser(@PathVariable("userId") Integer userId) throws EntityNotFoundException {
+        return userServices.getUser(userId);
     }
 
 
