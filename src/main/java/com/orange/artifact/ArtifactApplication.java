@@ -32,13 +32,6 @@ public class ArtifactApplication extends SpringBootServletInitializer {
 			}
 		};
 	}
-	public void func1()
-	{
-
-	}
-	public void func3()
-    {
-        
-    }
+	
 }
 
