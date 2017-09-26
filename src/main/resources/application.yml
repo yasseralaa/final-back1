@@ -5,13 +5,35 @@
 spring.jmx:
    enabled: false
 
-spring.datasource:
-    driverClassName: com.mysql.jdbc.Driver
+spring.profiles: default
+
+spring:
+  profiles:
+    active: default
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    platform: mysql
     url: jdbc:mysql://localhost:3306/miniproject
     username: root
     password:
-    testWhileIdle: true
-    validationQuery: SELECT 1
+    driverClassName: com.mysql.jdbc.Driver
+
+---
+spring.profiles: test
+
+spring:
+    datasource:
+      platform: h2
+      url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+      driverClassName: org.h2.Driver
+    jpa:
+        database: H2
+        generate-ddl: true
+        hibernate.ddl-auto: create-drop
 
 server:
   port: 8080
@@ -42,24 +64,13 @@ info:
 hotel.service:
   name: 'default profile:'
 ---
-spring:
-  profiles: test
-  h2:
-    console:
-      enabled: true
+#spring:
+#  profiles: test
+#  h2:
+#    console:
+#      enabled: true
 
-spring:
-  jpa:
-    database: MYSQL
-    show-sql: true
-    hibernate:
-      ddl-auto: validate
-  datasource:
-    platform: mysql
-    url: jdbc:mysql://localhost:3306/miniproject
-    username: root
-    password:
-    driverClassName: com.mysql.jdbc.Driver
+
 
 
 hotel.service:

@@ -84,7 +84,6 @@ public class UserController {
         System.out.println(user.getPassword());
         System.out.println(user.getName());*/
         return user;
-
     }
 
     @GetMapping(value = "/{userId}")

@@ -10,9 +10,9 @@ import org.springframework.web.client.RestTemplate;
 public class WeatherAPIServices {
     RestTemplate restTemplate = new RestTemplate();
     @Value("${weather.url}")
-    String weatherURL;
+    String weatherURL;// = "http://api.openweathermap.org/data/2.5/weather?q=cairo&appid=9dc9e56ace548fb9042b05e2c626b127";
     @Value("${weather.name}")
-    String name;
+    String name;// = "openweather";
 
     public Weather getWeather(){
         if(name == null){
