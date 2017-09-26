@@ -5,11 +5,11 @@
 spring.jmx:
    enabled: false
 
-spring.profiles: default
+#spring.profiles: default
 
 spring:
   profiles:
-    active: default
+    active: test
   jpa:
     database: MYSQL
     show-sql: true
@@ -33,7 +33,7 @@ spring:
     jpa:
         database: H2
         generate-ddl: true
-        hibernate.ddl-auto: create-drop
+        hibernate.ddl-auto: none
 
 server:
   port: 8080
