@@ -56,6 +56,10 @@ public class UserController {
     @Autowired
     LoginDTOValidator loginDTOValidator;
 
+    @RequestMapping("/")
+    public @ResponseBody String greeting() {
+        return "Hello World";
+    }
 
     @RequestMapping(value = "/saveuser" , method = {POST,PUT})
     public User addUser(@RequestBody @Validated(UserDTOValidator.class)  UserDTO userDTO , BindingResult result){
