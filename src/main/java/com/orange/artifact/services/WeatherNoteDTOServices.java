@@ -44,6 +44,7 @@ public class WeatherNoteDTOServices {
         logger.info("In WeatherNoteDTOServices : getWeatherNote Function is called");
 
         if(weatherNote == null){
+            System.out.println("NULLLLLL KTEEEEEER");
             List<PredefinedNotes> predefinedNotesList = predefinedNoteServices.getAllpredefinedNotes();
             for(PredefinedNotes predefinedNotes: predefinedNotesList){
                 if(temperature <= predefinedNotes.getMaximumTemperature()){

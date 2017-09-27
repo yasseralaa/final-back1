@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 import javax.persistence.Column;
 import java.sql.Date;
 
-@Data
 public class WeatherNoteDTO {
     @NotBlank(message = "adminID can't be blank")
     @NotEmpty(message = "adminID can't be empty")

@@ -26,6 +26,9 @@ public class PredefinedNoteServices {
 
     public PredefinedNotes findpredefinedNotes(Integer id){ return predefinedNotesDao.findById(id).get(); }
     public void delete(PredefinedNotes user){predefinedNotesDao.delete(user);}
-    public void updatepredefinedNotes(PredefinedNotes user){predefinedNotesDao.save(user);}
-    public void savepredefinedNotes(PredefinedNotes user){predefinedNotesDao.save(user);}
+    public void updatepredefinedNotes(String messageNote,PredefinedNotes predefinedNote){
+        predefinedNote.setMessage(messageNote);
+        predefinedNotesDao.save(predefinedNote);
+    }
+    public void savepredefinedNotes(PredefinedNotes predefinedNote){predefinedNotesDao.save(predefinedNote);}
 }
