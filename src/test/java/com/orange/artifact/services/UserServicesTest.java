@@ -23,7 +23,7 @@ public class UserServicesTest {
     UserServices userServices = new UserServices();
 
     @Test
-    public void findAdmin() {
+    public void findAdminTest() {
         Role role = new Role();
         User user = new User();
 
@@ -38,6 +38,35 @@ public class UserServicesTest {
         user.setPassword(password);
         user.setName("admin");
         user.setMobileNumber("01122334455");
+        user.setRole(role);
+
+        // Mockito expectations
+        when(userDao.findByEmailAndPassword(email,password)).thenReturn(user);
+
+        // Execute the method being tested
+        User actual = userServices.findUser(email,password);
+
+        Assert.assertNotNull(actual);
+        Assert.assertEquals(actual,user);
+    }
+
+
+    @Test
+    public void findUserTest() {
+        Role role = new Role();
+        User user = new User();
+
+        String email = "user@user.com";
+        String password = "user";
+
+        role.setId(2);
+        role.setRole("ROLE_USER");
+
+        user.setId(2);
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setName("user");
+        user.setMobileNumber("01425366543");
         user.setRole(role);
 
         // Mockito expectations

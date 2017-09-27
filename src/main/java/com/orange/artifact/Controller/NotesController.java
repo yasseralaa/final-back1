@@ -43,7 +43,6 @@ public class NotesController {
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/addnote" , method = {POST,PUT})
     public void addWeatherNotes(@RequestBody /*@Validated(WeatherNoteDTOValidator.class)*/ WeatherNoteDTO weatherNoteDTO /*, BindingResult result*/) {
-        System.out.println(weatherNoteDTO.getWeatherDate() + " " + weatherNoteDTO.getWeatherNote() + " " + weatherNoteDTO.getAdminID());
         WeatherNote weatherNote = weatherNoteDTOServices.ConvertWeatherNoteDTOTOWeatherNote(weatherNoteDTO);
         weatherNoteServices.saveWeatherNote(weatherNote);
     }
