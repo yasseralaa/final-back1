@@ -21,13 +21,19 @@ public class WeatherNoteServices {
 
     @Autowired
     WeatherNoteRepository weatherNoteDao;
-    public ArrayList<WeatherNote> getAllWeatherNotes(){return (ArrayList<WeatherNote>) weatherNoteDao.findAll();}
+    public ArrayList<WeatherNote> getAllWeatherNotes(){
+        return (ArrayList<WeatherNote>) weatherNoteDao.findAll();
+
+    }
+
     public List<WeatherNote> getAllWeatherNotes(Integer userId){
         logger.info("In WeatherNoteServices : getAllWeatherNotes Function is called");
         return  weatherNoteDao.findByUser(userId);
     }
 
-    public WeatherNote findWeatherNote(Integer id){return weatherNoteDao.findById(id).get();}
+    public WeatherNote findWeatherNote(Integer id){
+        return weatherNoteDao.findById(id).get();
+    }
     public WeatherNote findWeatherNote(Date date){
         logger.info("In WeatherNoteServices : findWeatherNote Function is called");
         WeatherNote weatherNote = weatherNoteDao.findByDate(date);
@@ -36,7 +42,23 @@ public class WeatherNoteServices {
     }
 
     public void delete(WeatherNote weatherNote){weatherNoteDao.delete(weatherNote);}
-    public void updateWeatherNote(WeatherNote weatherNote){weatherNoteDao.save(weatherNote);}
-    public void saveWeatherNote(WeatherNote weatherNote){weatherNoteDao.save(weatherNote);}
+
+    public void updateWeatherNote(String newNote,WeatherNote weatherNote){
+        if(weatherNote == null) {
+            //through custom exception.. note must be added first
+            System.out.println("today's note must be added first");
+        }
+        else {
+            System.out.println("updating todays note");
+            System.out.println("today's note: "+weatherNote.getNote());
+            System.out.println("new note: "+newNote);
+            weatherNote.setNote(newNote);
+            weatherNoteDao.save(weatherNote);
+            System.out.println("today's note has been updated");
+        }
+    }
+    public void saveWeatherNote(WeatherNote weatherNote){
+        weatherNoteDao.save(weatherNote);
+    }
 
 }

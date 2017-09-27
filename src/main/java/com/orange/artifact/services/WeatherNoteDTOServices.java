@@ -30,10 +30,10 @@ public class WeatherNoteDTOServices {
 
 
         WeatherNote weatherNote = new WeatherNote();
-        User user = userServices.findUser(weatherNoteDTO.getAdminID());
+        User user = userServices.findUser(weatherNoteDTO.getId());
 
-        weatherNote.setDate(weatherNoteDTO.getWeatherDate());
-        weatherNote.setNote(weatherNoteDTO.getWeatherNote());
+        weatherNote.setDate(weatherNoteDTO.getDate());
+        weatherNote.setNote(weatherNoteDTO.getNote());
         weatherNote.setUser(user);
 
         return weatherNote;
