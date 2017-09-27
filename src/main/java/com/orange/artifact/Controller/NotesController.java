@@ -43,22 +43,14 @@ public class NotesController {
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/addnote" , method = {POST,PUT})
     public void addWeatherNotes(@RequestBody /*@Validated(WeatherNoteDTOValidator.class)*/ WeatherNoteDTO weatherNoteDTO /*, BindingResult result*/) {
-        System.out.println(weatherNoteDTO.getDate() + " " + weatherNoteDTO.getNote() + " " + weatherNoteDTO.getId());
+        System.out.println(weatherNoteDTO.getWeatherDate() + " " + weatherNoteDTO.getWeatherNote() + " " + weatherNoteDTO.getAdminID());
         WeatherNote weatherNote = weatherNoteDTOServices.ConvertWeatherNoteDTOTOWeatherNote(weatherNoteDTO);
         weatherNoteServices.saveWeatherNote(weatherNote);
-    }
-
-    @Secured({"ROLE_ADMIN"})
-    @RequestMapping(value = "/updatenote" , method = {POST,PUT})
-    public void updateWeatherNotes(@RequestBody WeatherNoteDTO weatherNoteDTO /*, BindingResult result*/) {
-        WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
-        weatherNoteServices.updateWeatherNote(weatherNoteDTO.getNote(), weatherNote);
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/getnote" , method = RequestMethod.GET)
     public String getWeatherNotes(){
-        System.out.println("get today's weather called");
         WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
         Double temperature = weatherAPIServices.getTemperature();
         return weatherNoteDTOServices.getWeatherNote(temperature , weatherNote);
@@ -68,23 +60,8 @@ public class NotesController {
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/getadminnote" , method = {GET})
     public List<WeatherNote> getAdminOldNotes(){
-        System.out.println("get admin notes called");
         List<WeatherNote> weatherNoteList= weatherNoteServices.getAllWeatherNotes();
         return weatherNoteList;
-    }
-
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @RequestMapping(value = "/isnotetoday" , method = {GET})
-    public Boolean isTodaysNote(){
-        System.out.println("isTodaysNote called");
-
-        WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
-        if(weatherNote == null) {
-            return false;
-        }
-        else {
-            return true;
-        }
     }
 
 

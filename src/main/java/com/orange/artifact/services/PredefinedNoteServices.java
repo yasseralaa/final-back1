@@ -21,7 +21,6 @@ public class PredefinedNoteServices {
     @Autowired
     PredefinedNotesRepository predefinedNotesDao;
     public List<PredefinedNotes> getAllpredefinedNotes(){
-
         return (List<PredefinedNotes>) predefinedNotesDao.findAll();
     }
 

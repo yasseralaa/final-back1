@@ -97,6 +97,6 @@ CREATE TABLE  weather_note  (
 --
 
 INSERT INTO  weather_note  ( id ,  date ,  note ,  user_id ) VALUES
-  (1, '2017-09-05', 'note note its note', 1),
-  (3, '2017-09-24', 'Nooooooooooooooooooooooooooooooooooooooooooooooooote', 1),
+  (1, '2017-09-05', 'Note number 1', 1),
+  (3, '2017-09-24', 'Second Note', 1),
   (4, '2017-09-25', 'new note', 1);

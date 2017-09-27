@@ -9,7 +9,7 @@ spring.jmx:
 
 spring:
   profiles:
-    active: default
+    active: test
   jpa:
     database: MYSQL
     show-sql: true

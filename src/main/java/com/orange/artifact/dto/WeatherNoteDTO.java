@@ -1,8 +1,6 @@
 package com.orange.artifact.dto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -11,23 +9,16 @@ import java.sql.Date;
 
 @Data
 public class WeatherNoteDTO {
-
-    @Getter
-    @Setter
     @NotBlank(message = "adminID can't be blank")
     @NotEmpty(message = "adminID can't be empty")
-    private Integer id;
+    private Integer adminID;
 
-    @Getter
-    @Setter
     @NotBlank(message = "weatherDate can't be blank")
     @NotEmpty(message = "weatherDate can't be empty")
-    private Date date;
+    private Date weatherDate;
 
 
-    @Getter
-    @Setter
     @NotBlank(message = "weatherNote can't be blank")
     @NotEmpty(message = "weatherNote can't be empty")
-    private String note;
+    private String weatherNote;
 }
