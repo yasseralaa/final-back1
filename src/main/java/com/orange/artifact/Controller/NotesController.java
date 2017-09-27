@@ -54,13 +54,6 @@ public class NotesController {
         weatherNoteServices.saveWeatherNote(weatherNote);
     }
 
-    @Secured({"ROLE_ADMIN"})
-    @RequestMapping(value = "/updatenote" , method = {POST,PUT})
-    public void updateWeatherNotes(@RequestBody WeatherNoteDTO weatherNoteDTO /*, BindingResult result*/) {
-        WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
-        weatherNoteServices.updateWeatherNote(weatherNoteDTO.getNote(), weatherNote);
-    }
-
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/getnote" , method = RequestMethod.GET)
     public String getWeatherNotes(){
@@ -94,21 +87,4 @@ public class NotesController {
         PredefinedNotes predefinedNotes = predifinedNoteServices.findpredefinedNotes(predifinedNoteDto.getId());
         predifinedNoteServices.updatepredefinedNotes(predifinedNoteDto.getMessage(), predefinedNotes);
     }
-
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
-    @RequestMapping(value = "/isnotetoday" , method = {GET})
-    public Boolean isTodaysNote(){
-        System.out.println("isTodaysNote called");
-
-        WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
-        if(weatherNote == null) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-
-
 }

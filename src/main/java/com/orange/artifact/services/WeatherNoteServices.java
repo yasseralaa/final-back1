@@ -43,22 +43,20 @@ public class WeatherNoteServices {
 
     public void delete(WeatherNote weatherNote){weatherNoteDao.delete(weatherNote);}
 
-    public void updateWeatherNote(String newNote,WeatherNote weatherNote){
-        if(weatherNote == null) {
-            //through custom exception.. note must be added first
-            System.out.println("today's note must be added first");
+    public void saveWeatherNote(WeatherNote weatherNote){
+        WeatherNote weatherNote1 = findWeatherNote(new Date(System.currentTimeMillis()));
+        if(weatherNote1 == null) {
+            weatherNoteDao.save(weatherNote);
+            System.out.println("today's note has been inserted");
         }
         else {
             System.out.println("updating todays note");
             System.out.println("today's note: "+weatherNote.getNote());
-            System.out.println("new note: "+newNote);
-            weatherNote.setNote(newNote);
-            weatherNoteDao.save(weatherNote);
+            System.out.println("new note: "+weatherNote.getNote());
+            weatherNote1.setNote(weatherNote.getNote());
+            weatherNoteDao.save(weatherNote1);
             System.out.println("today's note has been updated");
         }
-    }
-    public void saveWeatherNote(WeatherNote weatherNote){
-        weatherNoteDao.save(weatherNote);
     }
 
 }
