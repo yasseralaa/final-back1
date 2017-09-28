@@ -16,13 +16,18 @@ import java.util.List;
 @Service("weatherNoteDTOServices")
 public class WeatherNoteDTOServices {
 
+    private Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     UserServices userServices;
 
     @Autowired
     PredefinedNoteServices predefinedNoteServices;
 
-    public WeatherNote ConvertWeatherNoteDTOTOWeatherNote(WeatherNoteDTO weatherNoteDTO) {
+    public WeatherNote ConvertWeatherNoteDTOTOWeatherNote(WeatherNoteDTO weatherNoteDTO){
+
+        logger.info("In WeatherNoteDTOServices : ConvertWeatherNoteDTOTOWeatherNote Function is called");
+
 
         WeatherNote weatherNote = new WeatherNote();
         User user = userServices.findUser(weatherNoteDTO.getId());
@@ -34,20 +39,22 @@ public class WeatherNoteDTOServices {
         return weatherNote;
     }
 
-    public String getWeatherNote(Double temperature, WeatherNote weatherNote) {
+    public String getWeatherNote(Double temperature , WeatherNote weatherNote){
 
-        if (weatherNote == null) {
+        logger.info("In WeatherNoteDTOServices : getWeatherNote Function is called");
+
+        if(weatherNote == null){
+            System.out.println("NULLLLLL KTEEEEEER");
             List<PredefinedNotes> predefinedNotesList = predefinedNoteServices.getAllpredefinedNotes();
-            for (PredefinedNotes predefinedNotes : predefinedNotesList) {
-                if (temperature <= predefinedNotes.getMaximumTemperature()) {
+            for(PredefinedNotes predefinedNotes: predefinedNotesList){
+                if(temperature <= predefinedNotes.getMaximumTemperature()){
                     return predefinedNotes.getMessage();
                 }
             }
-        } else {
-            return weatherNote.getNote();
+        }else{
+            return  weatherNote.getNote();
         }
         return null;
     }
-
 
 }
