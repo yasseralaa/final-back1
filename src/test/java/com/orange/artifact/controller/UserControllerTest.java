@@ -1,7 +1,6 @@
 package com.orange.artifact.controller;
 
 import com.google.gson.Gson;
-import com.orange.artifact.Controller.UserController;
 import com.orange.artifact.dto.LoginDTO;
 import com.orange.artifact.dto.UserDTO;
 import com.orange.artifact.model.Role;
@@ -15,10 +14,8 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;

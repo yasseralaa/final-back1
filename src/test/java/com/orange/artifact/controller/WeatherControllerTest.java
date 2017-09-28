@@ -2,13 +2,10 @@ package com.orange.artifact.controller;
 
 
 import com.google.gson.Gson;
-import com.orange.artifact.Controller.UserController;
-import com.orange.artifact.Controller.WeatherController;
 import com.orange.artifact.Weather.OpenWeather.Main;
 import com.orange.artifact.Weather.OpenWeather.OpenWeather;
 import com.orange.artifact.Weather.OpenWeather.Wind;
 import com.orange.artifact.Weather.Weather;
-import com.orange.artifact.model.User;
 import com.orange.artifact.services.WeatherAPIServices;
 import org.junit.Assert;
 import org.junit.Before;
@@ -75,13 +72,14 @@ public class WeatherControllerTest {
         Weather actual = gson.fromJson(actions.andReturn().getResponse().getContentAsString(), OpenWeather.class);
 
         Assert.assertNotNull(actual);
-        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp(), openWeather.getMain().getTemp());
-        Assert.assertEquals(((OpenWeather)actual).getMain().getPressure(), openWeather.getMain().getPressure());
-        Assert.assertEquals(((OpenWeather)actual).getMain().getHumidity(), openWeather.getMain().getHumidity());
-        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_max(), openWeather.getMain().getTemp_max());
-        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_min(), openWeather.getMain().getTemp_min());
-        Assert.assertEquals(((OpenWeather)actual).getWind().getDeg(), openWeather.getWind().getDeg());
-        Assert.assertEquals(((OpenWeather)actual).getWind().getSpeed(), openWeather.getWind().getSpeed());
+        Assert.assertEquals(actual,openWeather);
+//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp(), openWeather.getMain().getTemp());
+//        Assert.assertEquals(((OpenWeather)actual).getMain().getPressure(), openWeather.getMain().getPressure());
+//        Assert.assertEquals(((OpenWeather)actual).getMain().getHumidity(), openWeather.getMain().getHumidity());
+//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_max(), openWeather.getMain().getTemp_max());
+//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_min(), openWeather.getMain().getTemp_min());
+//        Assert.assertEquals(((OpenWeather)actual).getWind().getDeg(), openWeather.getWind().getDeg());
+//        Assert.assertEquals(((OpenWeather)actual).getWind().getSpeed(), openWeather.getWind().getSpeed());
     }
 
 }

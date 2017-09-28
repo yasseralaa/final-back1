@@ -11,15 +11,10 @@ import org.springframework.stereotype.Service;
 @Service("userDTOServices")
 public class UserDTOServices {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     RoleServices roleServices;
 
-    public User ConvertUserDTOtoUser(UserDTO userDTO){
-
-        logger.info("In UserDTOServices : ConvertUserDTOtoUser Function is called");
-
+    public User ConvertUserDTOtoUser(UserDTO userDTO) {
         User user = new User();
         Role role = roleServices.findrole(userDTO.getRoleId());
 

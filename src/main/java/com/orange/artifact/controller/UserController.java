@@ -1,29 +1,20 @@
-package com.orange.artifact.Controller;
+package com.orange.artifact.controller;
 
 
-import com.orange.artifact.ErrorHandling.EntityNotFoundException;
-import com.orange.artifact.Weather.Weather;
+import com.orange.artifact.errorHandling.EntityNotFoundException;
 import com.orange.artifact.dto.LoginDTO;
 import com.orange.artifact.dto.UserDTO;
-import com.orange.artifact.dto.WeatherNoteDTO;
 import com.orange.artifact.model.User;
-import com.orange.artifact.model.WeatherNote;
 import com.orange.artifact.services.*;
 import com.orange.artifact.validator.LoginDTOValidator;
 import com.orange.artifact.validator.UserDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import sun.misc.Request;
-
-import java.sql.Date;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -63,7 +54,6 @@ public class UserController {
             throw new  UsernameNotFoundException("problem occured while adding a user");
         }
 
-        logger.info("In UserController : addUser Function is called");
         User user = userDTOServices.ConvertUserDTOtoUser(userDTO);
         userServices.saveUser(user);
         return user;
@@ -76,13 +66,7 @@ public class UserController {
         if(result.hasErrors()) {
             throw new UsernameNotFoundException("usr nt fnd");
         }
-
-        System.out.println("In Login");
-
         User user = userServices.findUser(loginDTO.getEmail(),loginDTO.getPassword());
-        /*System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-        System.out.println(user.getName());*/
         return user;
     }
 

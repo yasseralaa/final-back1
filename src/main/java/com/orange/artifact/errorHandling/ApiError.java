@@ -1,4 +1,4 @@
-package com.orange.artifact.ErrorHandling;
+package com.orange.artifact.errorHandling;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -13,7 +13,6 @@ import org.springframework.validation.ObjectError;
 import javax.validation.ConstraintViolation;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 

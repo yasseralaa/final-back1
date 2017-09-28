@@ -17,46 +17,29 @@ import java.util.List;
 @Transactional
 public class WeatherNoteServices {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     WeatherNoteRepository weatherNoteDao;
-    public ArrayList<WeatherNote> getAllWeatherNotes(){
+
+    public ArrayList<WeatherNote> getAllWeatherNotes() {
         return (ArrayList<WeatherNote>) weatherNoteDao.findAll();
-
     }
 
-    public List<WeatherNote> getAllWeatherNotes(Integer userId){
-        logger.info("In WeatherNoteServices : getAllWeatherNotes Function is called");
-        return  weatherNoteDao.findByUser(userId);
-    }
 
-    public WeatherNote findWeatherNote(Integer id){
-        return weatherNoteDao.findById(id).get();
-    }
-    public WeatherNote findWeatherNote(Date date){
-        logger.info("In WeatherNoteServices : findWeatherNote Function is called");
+    public WeatherNote findWeatherNote(Date date) {
         WeatherNote weatherNote = weatherNoteDao.findByDate(date);
-        System.out.println(date);
-        return weatherNoteDao.findByDate(date);
+        return weatherNote;
     }
 
-    public void delete(WeatherNote weatherNote){weatherNoteDao.delete(weatherNote);}
-
-    public void saveWeatherNote(WeatherNote weatherNote){
+    public void saveWeatherNote(WeatherNote weatherNote) {
         WeatherNote weatherNote1 = findWeatherNote(new Date(System.currentTimeMillis()));
-        if(weatherNote1 == null) {
+        if (weatherNote1 == null) {
             weatherNoteDao.save(weatherNote);
-            System.out.println("today's note has been inserted");
-        }
-        else {
-            System.out.println("updating todays note");
-            System.out.println("today's note: "+weatherNote.getNote());
-            System.out.println("new note: "+weatherNote.getNote());
+        } else {
             weatherNote1.setNote(weatherNote.getNote());
             weatherNoteDao.save(weatherNote1);
-            System.out.println("today's note has been updated");
         }
     }
+
+
 
 }

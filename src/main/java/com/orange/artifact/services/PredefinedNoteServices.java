@@ -16,19 +16,20 @@ import java.util.List;
 @Transactional
 public class PredefinedNoteServices {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     PredefinedNotesRepository predefinedNotesDao;
-    public List<PredefinedNotes> getAllpredefinedNotes(){
+
+    public List<PredefinedNotes> getAllpredefinedNotes() {
         return (List<PredefinedNotes>) predefinedNotesDao.findAll();
     }
 
-    public PredefinedNotes findpredefinedNotes(Integer id){ return predefinedNotesDao.findById(id).get(); }
-    public void delete(PredefinedNotes user){predefinedNotesDao.delete(user);}
-    public void updatepredefinedNotes(String messageNote,PredefinedNotes predefinedNote){
+    public PredefinedNotes findpredefinedNotes(Integer id) {
+        return predefinedNotesDao.findById(id).get();
+    }
+
+    public void updatepredefinedNotes(String messageNote, PredefinedNotes predefinedNote) {
         predefinedNote.setMessage(messageNote);
         predefinedNotesDao.save(predefinedNote);
     }
-    public void savepredefinedNotes(PredefinedNotes predefinedNote){predefinedNotesDao.save(predefinedNote);}
 }

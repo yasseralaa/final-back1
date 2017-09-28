@@ -14,17 +14,10 @@ import java.util.List;
 @Service("roleServices")
 @Transactional
 public class RoleServices {
-
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
-
     @Autowired
     RoleRepository roleDAO;
-    public List<Role> getAllroles(){return (List<Role>) roleDAO.findAll();}
-    public Role findrole(Integer id){
-        logger.info("In RoleServices : findrole Function is called");
+
+    public Role findrole(Integer id) {
         return roleDAO.findById(id).get();
     }
-    public void delete(Role role){roleDAO.delete(role);}
-    public void updaterole(Role role){roleDAO.save(role);}
-    public void saverole(Role role){roleDAO.save(role);}
 }
