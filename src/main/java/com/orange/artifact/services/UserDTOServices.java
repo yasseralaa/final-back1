@@ -14,16 +14,9 @@ public class UserDTOServices {
     @Autowired
     RoleServices roleServices;
 
-    public User ConvertUserDTOtoUser(UserDTO userDTO) {
-        User user = new User();
-        Role role = roleServices.findrole(userDTO.getRoleId());
-
-        user.setName(userDTO.getName());
-        user.setEmail(userDTO.getEmail());
-        user.setPassword(userDTO.getPassword());
-        user.setMobileNumber(userDTO.getMobileNumber());
-        user.setRole(role);
-
-        return user;
+    public UserDTO ConvertUsertoUserDTO(User user) {
+        UserDTO userDTO = new UserDTO();
+        userDTO.setRole(user.getRole());
+        return userDTO;
     }
 }

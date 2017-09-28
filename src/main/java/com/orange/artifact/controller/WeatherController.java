@@ -21,6 +21,7 @@ public class WeatherController {
     @Autowired
     WeatherAPIServices weatherAPIServices;
 
+    //NO DTOs HERE, IT's AN API THEY SHOULD CONTROLLER THEIR DATA THEMSELVES
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/today",method = {GET})
     public Weather getWeather(){

@@ -1,6 +1,8 @@
 package com.orange.artifact.controller;
 
 
+import com.orange.artifact.dro.LoginDRO;
+import com.orange.artifact.dro.UserDRO;
 import com.orange.artifact.errorHandling.EntityNotFoundException;
 import com.orange.artifact.dto.LoginDTO;
 import com.orange.artifact.dto.UserDTO;
@@ -8,6 +10,7 @@ import com.orange.artifact.model.User;
 import com.orange.artifact.services.*;
 import com.orange.artifact.validator.LoginDTOValidator;
 import com.orange.artifact.validator.UserDTOValidator;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,36 +50,37 @@ public class UserController {
     @Autowired
     LoginDTOValidator loginDTOValidator;
 
+    @Autowired
+    ModelMapper modelMapper;
 
     @RequestMapping(value = "/saveuser" , method = {POST,PUT})
-    public User addUser(@RequestBody @Validated(UserDTOValidator.class)  UserDTO userDTO , BindingResult result){
+    public UserDTO addUser(@RequestBody @Validated(UserDTOValidator.class) UserDRO userDRO , BindingResult result){
         if(result.hasErrors()){
-            throw new  UsernameNotFoundException("problem occured while adding a user");
+            throw new UsernameNotFoundException("problem occured while adding a user");
         }
-
-        User user = userDTOServices.ConvertUserDTOtoUser(userDTO);
+        User user = modelMapper.map(userDRO, User.class);
         userServices.saveUser(user);
-        return user;
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        return userDTO;
     }
 
 
     @PostMapping(value = "/login")
     @RequestMapping(value = "/login" , method = {POST , PUT,GET})
-    public User login(@RequestBody @Validated(LoginDTOValidator.class)  LoginDTO loginDTO, BindingResult result) {
+    public UserDTO login(@RequestBody @Validated(LoginDTOValidator.class) LoginDRO loginDRO, BindingResult result) {
         if(result.hasErrors()) {
             throw new UsernameNotFoundException("usr nt fnd");
         }
-        User user = userServices.findUser(loginDTO.getEmail(),loginDTO.getPassword());
-        return user;
+        User user = modelMapper.map(loginDRO, User.class);
+        user = userServices.findUser(user.getEmail(),user.getPassword());
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        return userDTO;
     }
 
     @GetMapping(value = "/{userId}")
-    public User getUser(@PathVariable("userId") Integer userId) throws EntityNotFoundException {
-        return userServices.getUser(userId);
+    public UserDTO getUser(@PathVariable("userId") Integer userId) throws EntityNotFoundException {
+        User user = userServices.getUser(userId);
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        return userDTO;
     }
-
-
-
-
-
 }

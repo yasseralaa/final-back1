@@ -87,7 +87,7 @@ public class UserControllerTest {
         Assert.assertEquals(actual.getRole().getId(), user.getRole().getId());
     }
 
-    @Test
+   /* @Test
     public void addUserTest() throws Exception {
         UserDTO userDTO = new UserDTO();
         User user = new User();
@@ -116,7 +116,7 @@ public class UserControllerTest {
                                 .content(new Gson().toJson(userDTO))
                 )
                 .andExpect(status().isOk());
-    }
+    }*/
 
 
     @Test

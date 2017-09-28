@@ -15,7 +15,7 @@ import java.util.List;
 
 @Service("weatherNoteDTOServices")
 public class WeatherNoteDTOServices {
-
+/*
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
@@ -37,24 +37,8 @@ public class WeatherNoteDTOServices {
         weatherNote.setUser(user);
 
         return weatherNote;
-    }
+    }*/
 
-    public String getWeatherNote(Double temperature , WeatherNote weatherNote){
 
-        logger.info("In WeatherNoteDTOServices : getWeatherNote Function is called");
-
-        if(weatherNote == null){
-            System.out.println("NULLLLLL KTEEEEEER");
-            List<PredefinedNotes> predefinedNotesList = predefinedNoteServices.getAllpredefinedNotes();
-            for(PredefinedNotes predefinedNotes: predefinedNotesList){
-                if(temperature <= predefinedNotes.getMaximumTemperature()){
-                    return predefinedNotes.getMessage();
-                }
-            }
-        }else{
-            return  weatherNote.getNote();
-        }
-        return null;
-    }
 
 }

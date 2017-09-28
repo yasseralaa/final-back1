@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Column;
 
-public class PredifinedNoteDto {
+public class PredifinedNoteDTO {
     @Getter
     @Setter
     @NotBlank(message = "predifined note id can't be blank")

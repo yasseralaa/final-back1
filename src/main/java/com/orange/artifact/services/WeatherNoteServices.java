@@ -1,5 +1,6 @@
 package com.orange.artifact.services;
 
+import com.orange.artifact.model.PredefinedNotes;
 import com.orange.artifact.model.WeatherNote;
 import com.orange.artifact.repository.UserRepository;
 import com.orange.artifact.repository.WeatherNoteRepository;
@@ -24,6 +25,26 @@ public class WeatherNoteServices {
     public ArrayList<WeatherNote> getAllWeatherNotes(){
         return (ArrayList<WeatherNote>) weatherNoteDao.findAll();
 
+    }
+
+    @Autowired
+    PredefinedNoteServices predefinedNoteServices;
+
+    public String getWeatherNote(Double temperature , WeatherNote weatherNote){
+
+        logger.info("In WeatherNoteDTOServices : getWeatherNote Function is called");
+
+        if(weatherNote == null){
+            List<PredefinedNotes> predefinedNotesList = predefinedNoteServices.getAllpredefinedNotes();
+            for(PredefinedNotes predefinedNotes: predefinedNotesList){
+                if(temperature <= predefinedNotes.getMaximumTemperature()){
+                    return predefinedNotes.getMessage();
+                }
+            }
+        }else{
+            return  weatherNote.getNote();
+        }
+        return null;
     }
 
     public List<WeatherNote> getAllWeatherNotes(Integer userId){
