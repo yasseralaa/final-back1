@@ -48,6 +48,7 @@ public class UserRepositoryTest {
         Assert.assertEquals("ROLE_USER",user.getRole().getRole());
     }
 
+
     @Test
     public void getUserByID(){
         User user = userDao.findUserById(2);

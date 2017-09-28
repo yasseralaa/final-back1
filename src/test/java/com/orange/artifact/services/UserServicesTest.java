@@ -1,5 +1,6 @@
 package com.orange.artifact.services;
 
+import com.orange.artifact.errorhandling.EntityNotFoundException;
 import com.orange.artifact.model.Role;
 import com.orange.artifact.model.User;
 import com.orange.artifact.repository.UserRepository;
@@ -23,7 +24,7 @@ public class UserServicesTest {
     UserServices userServices = new UserServices();
 
     @Test
-    public void findAdminTest() {
+    public void findAdminTest() throws EntityNotFoundException {
         Role role = new Role();
         User user = new User();
 
@@ -52,7 +53,7 @@ public class UserServicesTest {
 
 
     @Test
-    public void findUserTest() {
+    public void findUserTest() throws EntityNotFoundException  {
         Role role = new Role();
         User user = new User();
 

@@ -42,4 +42,7 @@ public class WeatherNoteRepositoryTest {
         WeatherNote weatherNote = weatherNoteDao.findByDate(day);
         Assert.assertNull(weatherNote);
     }
+
+
+
 }

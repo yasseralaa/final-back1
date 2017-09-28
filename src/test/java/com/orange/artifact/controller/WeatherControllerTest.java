@@ -73,13 +73,6 @@ public class WeatherControllerTest {
 
         Assert.assertNotNull(actual);
         Assert.assertEquals(actual,openWeather);
-//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp(), openWeather.getMain().getTemp());
-//        Assert.assertEquals(((OpenWeather)actual).getMain().getPressure(), openWeather.getMain().getPressure());
-//        Assert.assertEquals(((OpenWeather)actual).getMain().getHumidity(), openWeather.getMain().getHumidity());
-//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_max(), openWeather.getMain().getTemp_max());
-//        Assert.assertEquals(((OpenWeather)actual).getMain().getTemp_min(), openWeather.getMain().getTemp_min());
-//        Assert.assertEquals(((OpenWeather)actual).getWind().getDeg(), openWeather.getWind().getDeg());
-//        Assert.assertEquals(((OpenWeather)actual).getWind().getSpeed(), openWeather.getWind().getSpeed());
     }
 
 }
