@@ -5,21 +5,22 @@ import com.orange.artifact.dro.PredifinedNoteDRO;
 import com.orange.artifact.dro.WeatherNoteDRO;
 import com.orange.artifact.dto.PredifinedNoteDTO;
 import com.orange.artifact.dto.WeatherNoteDTO;
+import com.orange.artifact.errorhandling.EntityNotFoundException;
 import com.orange.artifact.model.PredefinedNotes;
 import com.orange.artifact.model.WeatherNote;
 import com.orange.artifact.services.PredefinedNoteServices;
 import com.orange.artifact.services.WeatherAPIServices;
-import com.orange.artifact.services.WeatherNoteDTOServices;
 import com.orange.artifact.services.WeatherNoteServices;
-import com.orange.artifact.validator.WeatherNoteDTOValidator;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.lang.reflect.Type;
 import java.sql.Date;
 import java.util.List;
@@ -41,12 +42,6 @@ public class NotesController {
     PredefinedNoteServices predifinedNoteServices;
 
     @Autowired
-    WeatherNoteDTOServices weatherNoteDTOServices;
-
-    @Autowired
-    WeatherNoteDTOValidator weatherNoteDTOValidator;
-
-    @Autowired
     WeatherAPIServices weatherAPIServices;
 
     @Autowired
@@ -54,14 +49,14 @@ public class NotesController {
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/addnote" , method = {POST,PUT})
-    public void addWeatherNotes(@RequestBody /*@Validated(WeatherNoteDTOValidator.class)*/ WeatherNoteDRO weatherNoteDRO /*, BindingResult result*/) {
+    public void addWeatherNotes(@Valid @RequestBody WeatherNoteDRO weatherNoteDRO , BindingResult result) throws EntityNotFoundException {
         WeatherNote weatherNote = modelMapper.map(weatherNoteDRO, WeatherNote.class);
         weatherNoteServices.saveWeatherNote(weatherNote);
     }
 
     @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @RequestMapping(value = "/getnote" , method = RequestMethod.GET)
-    public String getWeatherNotes(){
+    public String getWeatherNotes() {
         WeatherNote weatherNote = weatherNoteServices.findWeatherNote(new Date(System.currentTimeMillis()));
         Double temperature = weatherAPIServices.getTemperature();
         return weatherNoteServices.getWeatherNote(temperature , weatherNote);
@@ -88,7 +83,9 @@ public class NotesController {
 
     @Secured({"ROLE_ADMIN"})
     @RequestMapping(value = "/updatepredifined" , method = {POST,PUT})
-    public void updatePredifinedNotes(@RequestBody PredifinedNoteDRO predifinedNoteDRO) {
+    public void updatePredifinedNotes(@Valid @RequestBody PredifinedNoteDRO predifinedNoteDRO) throws EntityNotFoundException {
+        System.out.println("updating predifined notes");
+
         PredefinedNotes predefinedNotes = predifinedNoteServices.findpredefinedNotes(predifinedNoteDRO.getId());
         predifinedNoteServices.updatepredefinedNotes(predifinedNoteDRO.getMessage(), predefinedNotes);
     }

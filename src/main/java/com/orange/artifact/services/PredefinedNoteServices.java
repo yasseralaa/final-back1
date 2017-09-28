@@ -1,11 +1,9 @@
 package com.orange.artifact.services;
 
 
+import com.orange.artifact.errorhandling.EntityNotFoundException;
 import com.orange.artifact.model.PredefinedNotes;
 import com.orange.artifact.repository.PredefinedNotesRepository;
-import com.orange.artifact.repository.UserRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +22,12 @@ public class PredefinedNoteServices {
         return (List<PredefinedNotes>) predefinedNotesDao.findAll();
     }
 
-    public PredefinedNotes findpredefinedNotes(Integer id) {
-        return predefinedNotesDao.findById(id).get();
+    public PredefinedNotes findpredefinedNotes(Integer id) throws EntityNotFoundException {
+        PredefinedNotes predefinedNotes = predefinedNotesDao.findById(id).get();
+        if (predefinedNotes == null) {
+            throw new EntityNotFoundException(PredefinedNotes.class, "id", predefinedNotes.getId().toString());
+        }
+        return predefinedNotes;
     }
 
     public void updatepredefinedNotes(String messageNote, PredefinedNotes predefinedNote) {

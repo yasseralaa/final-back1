@@ -1,4 +1,4 @@
-package com.orange.artifact.errorHandling;
+package com.orange.artifact.errorhandling;
 
 
 import org.springframework.util.StringUtils;

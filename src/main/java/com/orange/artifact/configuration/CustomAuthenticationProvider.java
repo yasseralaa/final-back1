@@ -1,6 +1,6 @@
 package com.orange.artifact.configuration;
 
-import com.orange.artifact.model.Role;
+import com.orange.artifact.errorhandling.EntityNotFoundException;
 import com.orange.artifact.model.User;
 import com.orange.artifact.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,12 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String name = authentication.getName();
         String password = authentication.getCredentials().toString();
-        User user = userServices.findUser(name,password);
+        User user = null;
+        try {
+            user = userServices.findUser(name,password);
+        } catch (EntityNotFoundException e) {
+            e.printStackTrace();
+        }
         if (user == null) {
             return null;
         } else {

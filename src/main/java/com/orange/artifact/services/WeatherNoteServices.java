@@ -1,8 +1,8 @@
 package com.orange.artifact.services;
 
+import com.orange.artifact.errorhandling.EntityNotFoundException;
 import com.orange.artifact.model.PredefinedNotes;
 import com.orange.artifact.model.WeatherNote;
-import com.orange.artifact.repository.UserRepository;
 import com.orange.artifact.repository.WeatherNoteRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,16 +55,14 @@ public class WeatherNoteServices {
     public WeatherNote findWeatherNote(Integer id){
         return weatherNoteDao.findById(id).get();
     }
-    public WeatherNote findWeatherNote(Date date){
+    public WeatherNote findWeatherNote(Date date) {
         logger.info("In WeatherNoteServices : findWeatherNote Function is called");
-        WeatherNote weatherNote = weatherNoteDao.findByDate(date);
-        System.out.println(date);
         return weatherNoteDao.findByDate(date);
     }
 
     public void delete(WeatherNote weatherNote){weatherNoteDao.delete(weatherNote);}
 
-    public void saveWeatherNote(WeatherNote weatherNote){
+    public void saveWeatherNote(WeatherNote weatherNote) throws EntityNotFoundException {
         WeatherNote weatherNote1 = findWeatherNote(new Date(System.currentTimeMillis()));
         if(weatherNote1 == null) {
             weatherNoteDao.save(weatherNote);
